@@ -27,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // 路由
 app.use('/login', require('./routes/login'))
+app.use('/user', require('./routes/user'))
+app.use('/playlist', require('./routes/playlist'))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
