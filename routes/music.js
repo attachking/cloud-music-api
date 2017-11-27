@@ -1,41 +1,39 @@
 let router = require('express').Router()
-let crypto = require('crypto')
 let {http} = require('../utils')
 
-// 手机登录
-router.post('/phone', (req, res, next) => {
-    const phone = req.body.phone
+router.post('/url', (req, res, next) => {
     const cookie = req.body.cookies
-    const md5sum = crypto.createHash('md5')
-    md5sum.update(req.body.password)
     const data = {
-        phone: phone,
-        password: md5sum.digest('hex'),
-        rememberLogin: true
+        ids: [req.body.id],
+        br: req.body.br || 999000,
+        csrf_token: ''
     }
     http({
-        url: 'https://music.163.com/weapi/login/cellphone',
+        url: 'https://music.163.com/weapi/song/enhance/player/url',
         method: 'post',
         data: data,
         cookie: cookie
-    }).then((data) => {
+    }).then(data => {
         res.send({
             data: data.data,
             cookies: data.headers['set-cookie']
         })
-    }).catch((err) => {
+    }).catch(err => {
         next(err)
     })
 })
 
-// 刷新登录
-router.post('/refresh', (req, res, next) => {
+router.post('/lyric', (req, res, next) => {
     const cookie = req.body.cookies
     const data = {
-        csrf_token: ''
+        os: 'osx',
+        id: req.body.id,
+        lv: -1,
+        kv: -1,
+        tv: -1
     }
     http({
-        url: 'https://music.163.com/weapi/login/token/refresh',
+        url: 'https://music.163.com/weapi/song/lyric',
         method: 'post',
         data: data,
         cookie: cookie

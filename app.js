@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/login', require('./routes/login'))
 app.use('/user', require('./routes/user'))
 app.use('/playlist', require('./routes/playlist'))
+app.use('/music', require('./routes/music'))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
