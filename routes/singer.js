@@ -73,4 +73,28 @@ router.post('/top', (req, res, next) => {
     })
 })
 
+// 歌手单曲列表
+router.post('/detail', (req, res, next) => {
+    const cookie = req.body.cookies
+    const data = {
+        id: req.body.id,
+        offset: req.body.offset || 0,
+        limit: req.body.limit || 50,
+        csrf_token: ''
+    }
+    http({
+        url: `https://music.163.com/weapi/v1/artist/${req.body.id}`,
+        method: 'post',
+        data: data,
+        cookie: cookie
+    }).then(data => {
+        res.send({
+            data: data.data,
+            cookies: data.headers['set-cookie']
+        })
+    }).catch(err => {
+        next(err)
+    })
+})
+
 module.exports = router
