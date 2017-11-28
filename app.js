@@ -30,6 +30,9 @@ app.use('/login', require('./routes/login'))
 app.use('/user', require('./routes/user'))
 app.use('/playlist', require('./routes/playlist'))
 app.use('/music', require('./routes/music'))
+app.use('/banner', require('./routes/banner'))
+app.use('/recommend', require('./routes/recommend'))
+app.use('/singer', require('./routes/singer'))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
