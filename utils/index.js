@@ -40,7 +40,7 @@ function http({url, method, data, cookie}) {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Referer': 'http://music.163.com',
             'Host': 'music.163.com',
-            'Cookie': cookie,
+            'Cookie': cookie || '',
             'User-Agent': randomUserAgent()
         }
     });

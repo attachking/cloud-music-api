@@ -33,6 +33,8 @@ app.use('/music', require('./routes/music'))
 app.use('/banner', require('./routes/banner'))
 app.use('/recommend', require('./routes/recommend'))
 app.use('/singer', require('./routes/singer'))
+app.use('/top', require('./routes/top'))
+app.use('/search', require('./routes/search'))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
